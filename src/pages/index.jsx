@@ -1,7 +1,6 @@
 import { contextC } from "@/components/Context"
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/router"
 import { useContext } from "react"
 
 export default function Home() {
@@ -13,9 +12,16 @@ export default function Home() {
             <div className={pad}>
 
                 <div className="relative">
-                    <Image src={urlLand} width="200" height="200" alt={altLand} className="w-full h-[520px]" />
 
-                    <div className="text-white flex flex-col gap-2 items-center text-center w-full absolute top-[60%]">
+                    <div id="container-images" className="flex">
+                        <Image src={urlLand} width="200" height="200" alt={altLand} className="w-full sm:w-1/2 lg:w-1/3 h-[520px]" />
+
+                        <Image src={urlLand} width="200" height="200" alt={altLand} className="hidden sm:inline w-1/2 lg:w-1/3 h-[520px]" />
+
+                        <Image src={urlLand} width="200" height="200" alt={altLand} className="hidden lg:inline w-1/3 h-[520px]" />
+                    </div>
+
+                    <div id="text-&-buy" className="text-white flex flex-col gap-2 items-center text-center w-full absolute top-[60%]">
                         <span className="text-2xl font-bold">{name}</span>
                         <Link href={urlLink} className="font-bold bg-[#ff9900] hover:bg-[#00cc00] gradientButton w-20 h-10 rounded-3xl cursor-pointer flex items-center justify-center">
                             <span>BUY</span>

@@ -1,10 +1,9 @@
 import React, { useContext } from 'react'
 import { contextC } from '../Context'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 export default function NavBar() {
-    const { searcher, setSearcher, searchValue, setSearchValue, router, setMenuStatus } = useContext(contextC)
+    const { searcher, setSearcher, searchValue, setSearchValue, router, setMenuStatus, list_menu } = useContext(contextC)
 
 
     return (
@@ -27,11 +26,38 @@ export default function NavBar() {
                     </svg>
                 </div>
 
+                <div id="items-menu">
+                    <ul className='hidden lg:flex gap-4'>
+                        {list_menu.map(item => (
+                            <li className={`${router.asPath === item.link ? 'underline font-black' : ''} cursor-pointer`} key={item.text}>
+                                <Link href={item.link}>{item.text}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                    
+                </div>
+
+                <div id='searcher-tablet' className='py-3 px-6 w-[450px] hidden md:flex lg:hidden gap-4 first-letter:items-center bg-white rounded-md'>
+
+                    <svg class="w-4 h-4 text-gray-800 dark:text-white cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+
+                    <input type="text" placeholder='BUSCAR' id="searcher" value={searchValue} onChange={(event) => setSearchValue(event.target.value)} className='w-[90%] h-6 p-2 text-black text-sm bg-white placeholder:text-black placeholder:font-bold focus:bg-white valid:bg-transparent' />
+
+                </div>
+
                 <div id='icons-menu' className='flex items-center gap-4'>
 
-                    {searcher ? (<svg id='searcher' onClick={() => setSearcher(false)} className="w-6 h-6 text-gray-800 dark:text-white cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    
+
+                    {searcher ? (<svg id='searcher' onClick={() => setSearcher(!searcher)} className="w-6 h-6 text-gray-800 dark:text-white cursor-pointer md:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M8 15.5a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Zm11.707 2.793-4-4a1 1 0 0 0-1.414 1.414l4 4a1 1 0 0 0 1.414-1.414Z"/>
                     </svg>) : <></>}
+
+                    <svg id='searcher' onClick={() => setSearcher(!searcher)} className="w-6 h-6 text-gray-800 dark:text-white cursor-pointer hidden lg:inline " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 15.5a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Zm11.707 2.793-4-4a1 1 0 0 0-1.414 1.414l4 4a1 1 0 0 0 1.414-1.414Z"/>
+                    </svg>
 
                     <svg id='user' className="w-6 h-6 text-gray-800 dark:text-white cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 18">
                         <path d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
@@ -41,9 +67,10 @@ export default function NavBar() {
                         <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z"/>
                     </svg>
 
-                    <svg onClick={() => setMenuStatus(true)} id='menu' className="w-6 h-6 text-gray-800 dark:text-white cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <svg id='menu' onClick={() => setMenuStatus(true)} className="w-6 h-6 text-gray-800 dark:text-white cursor-pointer lg:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
                     </svg>
+
                 </div>
 
             </div>
@@ -51,7 +78,7 @@ export default function NavBar() {
             
 
             {searcher ? <></> : (
-                <nav className='py-3 px-6 flex gap-4 items-center bg-white rounded-md'>
+                <nav className='py-3 px-6 flex md:hidden lg:flex gap-4 items-center bg-white rounded-md'>
 
                     <svg class="w-4 h-4 text-gray-800 dark:text-white cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>

@@ -13,7 +13,6 @@ function ContextProvider({ children }) {
 
     const router = useRouter()
     
-    // console.log(id)
 
     const ScrollStart = () => {
         window.scrollTo({
@@ -569,6 +568,8 @@ function ContextProvider({ children }) {
         },
 
     ]
+
+    products.forEach(element => element.id = uuidv4())
 
     const list_menu = [
         {

@@ -30,9 +30,9 @@ export default function FooterPage() {
     return (
         <footer className='w-full border-t-2 [&>div]:border-b-2 [&>div]:border-black [&>div]:p-4 border-black bg-white text-black'>
 
-            <div onClick={() => setStatusList({...statusList, help:!statusList.help})} className='flex flex-col gap-3'>
+            <div className='flex flex-col gap-3'>
 
-                <div className='flex justify-between items-center cursor-pointer'>
+                <div onClick={() => setStatusList({...statusList, help:!statusList.help})} className='flex justify-between items-center cursor-pointer'>
                     <span className='font-black'>Help</span>
 
                     { statusList.help ? (
@@ -72,9 +72,9 @@ export default function FooterPage() {
             </div>
 
 
-            <div onClick={() => setStatusList({...statusList, payments:!statusList.payments})} className='flex flex-col gap-3'>
+            <div className='flex flex-col gap-3'>
 
-                <div className='flex justify-between items-center cursor-pointer'>
+                <div onClick={() => setStatusList({...statusList, payments:!statusList.payments})} className='flex justify-between items-center cursor-pointer'>
                     <span className='font-black'>Payment methods</span>
 
                     { statusList.payments ? (
@@ -95,7 +95,7 @@ export default function FooterPage() {
 
             </div>
 
-            <div className=' h-40 bg-gray-600 flex justify-center items-center'>
+            <div className='h-40 bg-gray-600 flex justify-center items-center'>
 
                 <Link href="https://github.com/pinjup">
                     <svg class="w-10 h-10 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

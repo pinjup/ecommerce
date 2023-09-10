@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import React, { useContext } from 'react'
 
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
 export default function Base({ children }) {
 
@@ -17,7 +17,7 @@ export default function Base({ children }) {
     }
 
     return (
-        <div className={`grid grid-cols-1 ${inter.className}`}>
+        <div className={`grid grid-cols-1 min-w-[375px]`}>
 
             <div className={`${menuStatus ? 'hidden' : ''}`}>
                 <NavBar />
